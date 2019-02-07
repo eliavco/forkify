@@ -6,4 +6,3 @@
 // Global app controller
 import { searchQuery } from './models/search';
 searchQuery('pizza');
-
