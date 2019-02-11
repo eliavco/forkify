@@ -9,17 +9,26 @@
         const keys = ['769d447afbec39f60297c0f3bc6aab14', '989b0516cc7f7f45946f767ae654a3df', '8036a931f33976ac29c4fec8067b65c2'];
         const proxy = 'https://cors-anywhere.herokuapp.com/';
         try {
-        //     const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[0]}&q=${this.query}`);
-        //     this.result = result.data.recipes;
-        //     // console.log(this.result);
-        // } catch (error) { 
-            // const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[1]}&q=${this.query}`);
-            // this.result = result.data.recipes;
-        // } catch (error) {
-            const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[2]}&q=${this.query}`);
-            this.result = result.data.recipes;
-        } catch (error) {
-            alert('We\'re sorry, something got wrong with the search...');
+            // for (key in keys){
+                const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[2]}&q=${this.query}`);
+                this.result = result.data.recipes;
+            //     if (result !== undefined){
+            //         break;
+            //     }
+            // }
+            // console.log(this.result);
+        } catch (error) { 
+            // try {
+            //     const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[1]}&q=${this.query}`);
+            //     this.result = result.data.recipes;
+            // } catch (error) {
+            //     try {
+            //         const result = await axios(`${proxy}https://www.food2fork.com/api/search?key=${keys[2]}&q=${this.query}`);
+            //         this.result = result.data.recipes;
+            //     } catch (error) {
+                    alert('We\'re sorry, something got wrong with the search...');
+            //     }
+            // }
         }
     }
  
