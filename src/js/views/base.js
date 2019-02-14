@@ -30,3 +30,8 @@ export const scrollToTop = () => {
         behavior: 'smooth' 
     });
 };
+
+export const apiTools = {
+    keys: ['769d447afbec39f60297c0f3bc6aab14', '989b0516cc7f7f45946f767ae654a3df', '8036a931f33976ac29c4fec8067b65c2'],
+    proxy: 'https://cors-anywhere.herokuapp.com/'
+}
