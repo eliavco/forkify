@@ -9,7 +9,7 @@ export default class Recipe{
 
     async getRecipe(){
         try {
-            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[1]}&rId=${this.id}`);
+            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[3]}&rId=${this.id}`);
             const recipe = result.data.recipe;
 
             this.title = recipe.title;
@@ -69,21 +69,21 @@ export default class Recipe{
                 objIng = {
                     count,
                     unit: arrIng[unitIndex],
-                    ingredient: arrIng.slice(unitIndex + 1).join(' ')
+                    ingredient: arrIng.slice(unitIndex + 1).join(' ').trimEnd()
                 };
             } else if (parseInt(arrIng[0], 10)) {
                 // There is NO unit, but there is a number
                 objIng = {
                     count: parseInt(arrIng[0], 10),
                     unit: '',
-                    ingredient: arrIng.slice(1).join(' ')
+                    ingredient: arrIng.slice(1).join(' ').trimEnd()
                 }
             } else if (unitIndex === -1) {
                 // There is NO unit nor a number in first position
                 objIng = {
                     count: 1,
                     unit: '',
-                    ingredient
+                    ingredient: ingredient.trimEnd()
                 }
             }
 

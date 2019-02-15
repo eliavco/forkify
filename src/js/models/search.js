@@ -9,7 +9,7 @@ export default class Search{
     async getResults(){
         try {
             // for (key in keys){
-                const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/search?key=${apiTools.keys[1]}&q=${this.query}`);
+                const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/search?key=${apiTools.keys[3]}&q=${this.query}`);
                 this.result = result.data.recipes;
             //     if (result !== undefined){
             //         break;

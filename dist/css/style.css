@@ -490,3 +490,13 @@ body {
   .shopping__item:hover .shopping__delete {
     opacity: 1;
     visibility: visible; }
+
+.beginning-position .results,
+.beginning-position .recipe,
+.beginning-position .shopping{
+  display: none;
+}
+
+.beginning-position{
+  height: 100px;
+}

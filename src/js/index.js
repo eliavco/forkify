@@ -11,6 +11,7 @@ import Search from './models/search';
 import Recipe from './models/recipe';
 import { elements, renderLoader, clearLoader, scrollToTop } from './views/base';
 import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
 
 /** Global state of the app:
  * - Search Object
@@ -34,6 +35,9 @@ const controlSearch = async (e) => {
         state.search = new Search(query);
 
         // 3) Prepare UI for results
+        if (elements.wrapper.classList.contains('beginning-position')){
+            elements.wrapper.classList.remove('beginning-position')
+        }
         searchView.clearInput();
         searchView.clearResults();
         renderLoader(elements.searchRes);
@@ -83,6 +87,8 @@ const controlRecipe = async () => {
     if (id){
 
         // Prepare UI for changes
+        recipeView.clearRecipe();
+        renderLoader(elements.recipe);
 
         // Create a new recipe object
         state.recipe = new Recipe(id);
@@ -97,7 +103,9 @@ const controlRecipe = async () => {
             state.recipe.calcTime();
     
             // Render data to the UI
-            console.log(state.recipe);
+            clearLoader();
+            recipeView.renderRecipe(state.recipe);
+
         } catch (err) {
             alert('');
         }
