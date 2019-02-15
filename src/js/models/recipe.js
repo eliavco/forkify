@@ -9,7 +9,7 @@ export default class Recipe{
 
     async getRecipe(){
         try {
-            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[0]}&rId=${this.id}`);
+            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[1]}&rId=${this.id}`);
             const recipe = result.data.recipe;
 
             this.title = recipe.title;
@@ -78,7 +78,7 @@ export default class Recipe{
                 const arrCount = arrIng.slice(0, unitIndex);
 
                 let count;
-                if (arrCount === 1){
+                if (arrCount.length == 1){
                     count = eval(arrIng[0].replace('-', '+'));
                 } else {
                     count = eval(arrCount.join('+'));
@@ -106,6 +106,7 @@ export default class Recipe{
 
             // return
             return objIng;
+            // return ingredient;
         });
         this.ingredients = newIngredients;
     }

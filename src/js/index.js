@@ -99,7 +99,7 @@ const controlRecipe = async () => {
             // Render data to the UI
             console.log(state.recipe);
         } catch (err) {
-            
+            alert('');
         }
     }
 };
