@@ -9,7 +9,7 @@ export default class Recipe{
 
     async getRecipe(){
         try {
-            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[3]}&rId=${this.id}`);
+            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[4]}&rId=${this.id}`);
             const recipe = result.data.recipe;
 
             this.title = recipe.title;
@@ -22,7 +22,7 @@ export default class Recipe{
             this.urlDomain = recipe.publisher_url;
         
         } catch (error) {
-            alert('There was a problem showing the recipe you\'ve asked for...');
+            
         }
     }
 
@@ -92,6 +92,16 @@ export default class Recipe{
             // return ingredient;
         });
         this.ingredients = newIngredients;
+    }
+
+    updateServings(type){
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+        this.ingredients.forEach(ing => {
+            ing.count = Math.round( (ing.count * (newServings / this.servings)) * 100 ) / 100;
+        });
+
+        this.servings = newServings
     }
 
 };

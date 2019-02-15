@@ -50,6 +50,7 @@ const controlSearch = async (e) => {
             clearLoader();
             searchView.renderRecipes(state.search.result);
         } catch (err) {
+            alert('We\'re sorry, something got wrong with the search...');
             clearLoader();
         }
     }
@@ -90,6 +91,9 @@ const controlRecipe = async () => {
         recipeView.clearRecipe();
         renderLoader(elements.recipe);
 
+        // Highlight selected item
+        if (state.search) searchView.highlightSelected(id);
+
         // Create a new recipe object
         state.recipe = new Recipe(id);
 
@@ -107,8 +111,24 @@ const controlRecipe = async () => {
             recipeView.renderRecipe(state.recipe);
 
         } catch (err) {
-            alert('');
+            alert('There was a problem showing the recipe you\'ve asked for...');
         }
     }
 };
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe));
+
+// Handling recipe button clicks
+elements.recipe.addEventListener('click', e => {
+    if (e.target.matches('.btn-decrease, .btn-decrease *')){
+        // Decrease button is clicked
+        if (state.recipe.servings > 1){
+            state.recipe.updateServings('dec');
+        }
+    } else if (e.target.matches('.btn-increase, .btn-increase *')){        
+        // Increase button is clicked
+        if (state.recipe.servings < 100){
+            state.recipe.updateServings('inc');
+        }
+    };
+    recipeView.updateServingsIngredients(state.recipe);
+});

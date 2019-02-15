@@ -22,7 +22,7 @@ const formatCount = count => {
 
         if (int === 0) {
             const fr = new Fraction(count);
-            retrun `${fr.numerator}/${fr.denominator}`;
+            return `${fr.numerator}/${fr.denominator}`;
         } else {
             const fr = new Fraction(count - int);
             return `${int} ${fr.numerator}/${fr.denominator}`;
@@ -67,12 +67,12 @@ export const renderRecipe = recipe => {
                 <span class="recipe__info-text"> servings</span>
 
                 <div class="recipe__info-buttons">
-                    <button class="btn-tiny">
+                    <button class="btn-tiny btn-decrease">
                         <svg>
                             <use href="img/icons.svg#icon-circle-with-minus"></use>
                         </svg>
                     </button>
-                    <button class="btn-tiny">
+                    <button class="btn-tiny btn-increase">
                         <svg>
                             <use href="img/icons.svg#icon-circle-with-plus"></use>
                         </svg>
@@ -122,4 +122,13 @@ export const renderRecipe = recipe => {
 
 export const clearRecipe = () => {
     elements.recipe.innerHTML = '';
+}
+
+export const updateServingsIngredients = recipe => {
+    document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+
+    const countElements = Array.from(document.querySelectorAll('.recipe__count'));
+    countElements.forEach((el, i) => {
+        el.textContent = formatCount(recipe.ingredients[i].count);
+    });
 }
