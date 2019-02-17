@@ -7,6 +7,7 @@ export const elements = {
     loader: 'loader',
     recipe: document.querySelector('.recipe'),
     wrapper: document.querySelector('.wrapper-el'),
+    shoppingList: document.querySelector('.shopping__list'),
 };
 
 export const renderLoader = parent => {
