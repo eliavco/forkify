@@ -9,7 +9,7 @@ export default class Recipe{
 
     async getRecipe(){
         try {
-            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[4]}&rId=${this.id}`);
+            const result = await axios(`${apiTools.proxy}https://www.food2fork.com/api/get?key=${apiTools.keys[0]}&rId=${this.id}`);
             const recipe = result.data.recipe;
 
             this.title = recipe.title;
